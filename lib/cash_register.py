@@ -25,11 +25,13 @@ class CashRegister:
 
   def add_item(self, title, price, quantity=1):
     pass
+    self.price = []
+    self.price.append(price)
     self._total = self._total + (price * quantity)
-    self._items.append(title)
-    if quantity > 1:
-      self._items.append(title)
-  
+    for x in range(quantity):
+      self.items.append(title)
+    
+
   def apply_discount(self, discount=0.2):
     pass
     if int(self._total - (self._total * discount)) == 0:
@@ -37,3 +39,25 @@ class CashRegister:
     else:
       self._total = int(self._total - (self._total * discount))
       print(f"After the discount, the total comes to ${self.total}.")
+  
+  def void_last_transaction(self):
+    pass
+    if len(self.items) == 0:
+      self.total = 0
+    else:
+      self.items.pop(-1)
+      self.total -= self.price[-1]
+    return self.total
+  
+
+
+    
+
+# st = CashRegister()
+# st.add_item("kit-kat",100,2)
+# st.add_item("mali",100)
+# print(st.items)
+# print(st.total)
+# st.void_last_transaction()
+# print(st.total)
+# print(st.items)
